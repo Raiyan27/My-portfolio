@@ -48,3 +48,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const skillItems = document.querySelectorAll('.skill-item');
+
+    skillItems.forEach(item => {
+        item.addEventListener('mouseenter', function () {
+            const popup = this.querySelector('.skill-popup');
+            const rect = this.getBoundingClientRect();
+
+            // Determine whether to show the popup above or below
+            if (rect.bottom + popup.offsetHeight > window.innerHeight) {
+                popup.style.top = 'auto';
+                popup.style.bottom = '100%';
+            } else {
+                popup.style.top = '100%';
+                popup.style.bottom = 'auto';
+            }
+
+            popup.style.display = 'block';
+        });
+
+        item.addEventListener('mouseleave', function () {
+            const popup = this.querySelector('.skill-popup');
+            popup.style.display = 'none';
+        });
+    });
+});
+
+
